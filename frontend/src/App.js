@@ -122,7 +122,7 @@ function App() {
             🔗 Find me on LinkedIn
           </Link>
           <Link
-            href="https://github.com/valeria921/articles_website"
+            href="https://github.com/valeria921/SnapFact"
             isExternal
             target="_blank"
             color="#495963"
