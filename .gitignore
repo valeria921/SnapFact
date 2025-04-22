@@ -1,0 +1,26 @@
+# Virtual environment
+.venv/
+
+# IDE/editor settings
+.idea/
+.vscode/
+
+# Node modules
+frontend/node_modules/
+
+# Environment & secrets
+*.env
+*.env.*
+
+# Django stuff
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+backend/db.sqlite3
+backend/media/
+backend/staticfiles/
+
+# Logs
+*.log
+
