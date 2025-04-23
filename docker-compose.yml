@@ -40,10 +40,12 @@ services:
         stdin_open: true
         tty: true
         ports:
-            - "3000:3000"
+            - "3000:80"
         depends_on:
             - backend
 
 volumes:
     postgres_data:
     node_modules:
+    static_data:
+    media_data:

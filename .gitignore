@@ -2,15 +2,20 @@
 .venv/
 
 # IDE/editor settings
-.idea/
-.vscode/
+backend/.idea/
+backend/.vscode/
 
 # Node modules
 frontend/node_modules/
 
+# Build output (React/Frontend)
+frontend/build/
+
 # Environment & secrets
 *.env
 *.env.*
+backend/.env
+backend/.env.docker
 
 # Django stuff
 __pycache__/
@@ -24,3 +29,6 @@ backend/staticfiles/
 # Logs
 *.log
 
+# Docker files
+docker-compose.override.yml
+*.log
