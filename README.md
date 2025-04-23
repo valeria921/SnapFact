@@ -30,6 +30,7 @@ docker compose up --build
 4. Visit:
 Frontend: http://localhost:3000
 Admin Panel: http://localhost:8000/your-admin-url/
+```
 
 ## ⚙️ Deployment
 
