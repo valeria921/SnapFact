@@ -31,9 +31,9 @@ docker compose up --build
 Frontend: http://localhost:3000
 Admin Panel: http://localhost:8000/your-admin-url/
 
-## ⚙️ Deployment
+##  ⚙️ Deployment
 The app is ready for deployment with Docker. Make sure your .env variables are set properly for production.
 
-## 🖼️ Image Credits:
+##  🖼️ Image Credits
 Illustration used in the project are from Storyset:
 <a href="https://storyset.com/technology">Technology illustrations by Storyset</a>
