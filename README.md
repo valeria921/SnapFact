@@ -22,17 +22,18 @@ SnapFact is a full-stack web application that provides fun and interesting facts
 git clone https://github.com/your-username/snapfact.git
 cd snapfact
 
-Create a .env file for backend settings
-Build and run the app with Docker Compose:
+2. Create a .env file for backend settings
+
+3. Build and run the app with Docker Compose:
 docker compose up --build
 
-Visit:
+4. Visit:
 Frontend: http://localhost:3000
 Admin Panel: http://localhost:8000/your-admin-url/
 
-Deployment:
+## ⚙️ Deployment
 The app is ready for deployment with Docker. Make sure your .env variables are set properly for production.
 
-Image Credits:
+## 🖼️ Image Credits:
 Illustration used in the project are from Storyset:
 <a href="https://storyset.com/technology">Technology illustrations by Storyset</a>
