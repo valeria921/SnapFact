@@ -70,10 +70,15 @@ services:
         volumes:
             - certbot-etc:/etc/letsencrypt
             - certbot-var:/var/lib/letsencrypt
-            - /root/snapfact-secrets/namecheap.ini:/root/.secrets/credentials.ini:ro
-            - ./certbot/run-certbot.sh:/usr/local/bin/run-certbot.sh
-            - /var/run/docker.sock:/var/run/docker.sock
-        entrypoint: ['/usr/local/bin/run-certbot.sh']
+            # - /root/snapfact-secrets/namecheap.ini:/root/.secrets/credentials.ini:ro # Removed
+            # - ./certbot/run-certbot.sh:/usr/local/bin/run-certbot.sh # Removed
+            # - /var/run/docker.sock:/var/run/docker.sock # Removed
+            # Remove entrypoint and command, we will run manually
+            # entrypoint: [...]
+            # command: [...]
+            # Add these to allow interaction
+            stdin_open: true
+            tty: true
 
 volumes:
     postgres_data:
