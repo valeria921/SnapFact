@@ -55,7 +55,6 @@ services:
             - media_data:/vol/web/media
             - certbot-etc:/etc/letsencrypt
             - certbot-var:/var/lib/letsencrypt
-            - ./nginx/ssl:/var/www/certbot
             - ./nginx/init-nginx.sh:/docker-entrypoint.d/init-nginx.sh
         depends_on:
             - backend
@@ -72,15 +71,35 @@ services:
             - certbot-etc:/etc/letsencrypt
             - certbot-var:/var/lib/letsencrypt
             - /root/snapfact-secrets/namecheap.ini:/root/.secrets/namecheap.ini:ro
-        entrypoint: >
-            sh -c "certbot certonly --authenticator dns-namecheap \
-                    --dns-namecheap-credentials /root/.secrets/namecheap.ini \
-                    --dns-namecheap-propagation-seconds 90 \
-                    --email valeria.kruk921@gmail.com --agree-tos --no-eff-email \
-                    --rsa-key-size 4096 --force-renewal --non-interactive \
-                    -d idonotlikedocker.com -d www.idonotlikedocker.com || true"
-        command: >
-            sh -c "sleep 10 && certbot renew --quiet --dns-namecheap-propagation-seconds 90 && docker exec nginx nginx -s reload"
+        entrypoint:
+            [
+                'certbot',
+                'certonly',
+                '--authenticator',
+                'dns-namecheap',
+                '--dns-namecheap-credentials',
+                '/root/.secrets/namecheap.ini',
+                '--dns-namecheap-propagation-seconds',
+                '90',
+                '--email',
+                'valeria.kruk921@gmail.com',
+                '--agree-tos',
+                '--no-eff-email',
+                '--rsa-key-size',
+                '4096',
+                '--force-renewal',
+                '--non-interactive',
+                '-d',
+                'idonotlikedocker.com',
+                '-d',
+                'www.idonotlikedocker.com',
+            ]
+        command:
+            [
+                'sh',
+                '-c',
+                'sleep 30 && certbot renew --quiet --dns-namecheap-propagation-seconds 90 && docker exec nginx nginx -s reload',
+            ]
 
 volumes:
     postgres_data:
