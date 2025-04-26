@@ -40,7 +40,9 @@ services:
     #     command: sh -c "npm install && npm run build"
 
     nginx:
-        image: nginx:alpine
+        build:
+            context: ./nginx
+            dockerfile: Dockerfile
         container_name: nginx
         restart: unless-stopped
         ports:
@@ -57,7 +59,7 @@ services:
             - ./nginx/init-nginx.sh:/docker-entrypoint.d/init-nginx.sh
         depends_on:
             - backend
-        command: >
+        entrypoint: >
             sh -c "/docker-entrypoint.d/init-nginx.sh && \
                    nginx -g 'daemon off;'"
 
@@ -71,7 +73,8 @@ services:
         entrypoint: >
             sh -c "certbot certonly --webroot --webroot-path=/var/www/certbot \
                     --email valeria.kruk921@gmail.com --agree-tos --no-eff-email \
-                    -d idonotlikedocker.com -d www.idonotlikedocker.com --rsa-key-size 4096 --force-renewal --non-interactive || true"
+                    --rsa-key-size 4096 --force-renewal --non-interactive \
+                    -d idonotlikedocker.com -d www.idonotlikedocker.com || true"
         command: >
             sh -c "sleep 10 && certbot renew --quiet && docker exec nginx nginx -s reload"
 
