@@ -14,7 +14,7 @@ frontend/build/
 # Environment & secrets
 *.env
 *.env.*
-backend/.env
+frontend/.env
 backend/.env.docker
 
 # Django stuff

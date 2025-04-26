@@ -8,6 +8,8 @@ COPY package-lock.json ./
 RUN npm install
 
 COPY . .
+COPY .env .env
+
 RUN npm run build
 
 # Production stage - serve with Nginx
@@ -18,9 +20,6 @@ RUN rm -rf /usr/share/nginx/html/*
 
 # Copy build files from React
 COPY --from=build /app/build /usr/share/nginx/html
-
-# ➕ Copy custom Nginx config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 

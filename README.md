@@ -39,3 +39,4 @@ The app is ready for deployment with Docker. Make sure your `.env` variables are
 ## 🖼️ Image Credits
 
 Illustration used in the project is from [Storyset](https://storyset.com/technology).
+
