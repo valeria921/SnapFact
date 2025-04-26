@@ -54,9 +54,12 @@ services:
             - certbot-etc:/etc/letsencrypt
             - certbot-var:/var/lib/letsencrypt
             - ./nginx/ssl:/var/www/certbot
-        # depends_on:
-        #     - frontend
-        #     - backend
+            - ./nginx/init-nginx.sh:/docker-entrypoint.d/init-nginx.sh
+        depends_on:
+            - backend
+        command: >
+            sh -c "/docker-entrypoint.d/init-nginx.sh && \
+                   nginx -g 'daemon off;'"
 
     certbot:
         image: certbot/certbot
@@ -66,10 +69,11 @@ services:
             - certbot-var:/var/lib/letsencrypt
             - ./nginx/ssl:/var/www/certbot
         entrypoint: >
-            sh -c "certbot certonly --webroot --webroot-path=/var/www/certbot
-            --email valeria.kruk921@gmail.com --agree-tos --no-eff-email
-            -d idonotlikedocker.com -d www.idonotlikedocker.com &&
-            certbot renew --quiet && nginx -s reload && crond -f"
+            sh -c "certbot certonly --webroot --webroot-path=/var/www/certbot \
+                    --email valeria.kruk921@gmail.com --agree-tos --no-eff-email \
+                    -d idonotlikedocker.com -d www.idonotlikedocker.com --rsa-key-size 4096 --force-renewal --non-interactive || true"
+        command: >
+            sh -c "sleep 10 && certbot renew --quiet && docker exec nginx nginx -s reload"
 
 volumes:
     postgres_data:
