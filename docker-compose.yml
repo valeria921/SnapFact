@@ -64,16 +64,23 @@ services:
                    nginx -g 'daemon off;'"
 
     certbot:
-        image: certbot/certbot
+        build:
+            context: ./certbot
+            dockerfile: Dockerfile
         container_name: certbot
         volumes:
             - certbot-etc:/etc/letsencrypt
             - certbot-var:/var/lib/letsencrypt
-            - ./nginx/ssl:/var/www/certbot
+            - /root/snapfact-secrets/namecheap.ini:/root/.secrets/namecheap.ini:ro
         entrypoint: >
-            sh -c "certbot certonly --webroot --webroot-path=/var/www/certbot --email valeria.kruk921@gmail.com --agree-tos --no-eff-email --rsa-key-size 4096 --force-renewal --non-interactive -d idonotlikedocker.com -d www.idonotlikedocker.com || true"
+            sh -c "certbot certonly --authenticator dns-namecheap \
+                    --dns-namecheap-credentials /root/.secrets/namecheap.ini \
+                    --dns-namecheap-propagation-seconds 90 \
+                    --email valeria.kruk921@gmail.com --agree-tos --no-eff-email \
+                    --rsa-key-size 4096 --force-renewal --non-interactive \
+                    -d idonotlikedocker.com -d www.idonotlikedocker.com || true"
         command: >
-            sh -c "sleep 10 && certbot renew --quiet && docker exec nginx nginx -s reload"
+            sh -c "sleep 10 && certbot renew --quiet --dns-namecheap-propagation-seconds 90 && docker exec nginx nginx -s reload"
 
 volumes:
     postgres_data:
