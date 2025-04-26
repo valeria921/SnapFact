@@ -7,7 +7,7 @@ echo "Attempting initial certificate acquisition..."
 # Run certonly, ignore failures initially (maybe certs already exist)
 certbot certonly \
     --authenticator dns-namecheap \
-    --dns-namecheap-credentials /root/.secrets/namecheap.ini \
+    --dns-namecheap-credentials /root/.secrets/credentials.ini \
     --dns-namecheap-propagation-seconds 90 \
     --email valeria.kruk921@gmail.com \
     --agree-tos \
