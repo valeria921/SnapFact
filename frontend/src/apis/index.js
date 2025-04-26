@@ -1,7 +1,6 @@
 import axios from 'axios';
-const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api/';
-
-function handleResponse(response) {}
+// Use relative path for API calls, handled by Nginx proxy
+const BASE_URL = '/api/';
 
 export function getCategoryList() {
   return axios.get(BASE_URL + 'categories/');
