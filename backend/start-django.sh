@@ -9,6 +9,7 @@ echo "Database is ready"
 
 python manage.py migrate
 
+# Attempt to create superuser, ignore error if already exists
 python manage.py createsuperuser --noinput || true
 
 python manage.py seed
