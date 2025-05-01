@@ -50,7 +50,7 @@ function App() {
             color="#283237"
             fontSize={{ base: '2xl', md: '4xl', lg: '6xl' }}
             lineHeight="1.2"
-            mb="4"
+            mb="6"
             fontFamily="'Verdana', sans-serif"
             fontWeight="semibold"
             letterSpacing="-0.03em"
@@ -61,7 +61,7 @@ function App() {
             color="#283237"
             fontSize={{ base: 'xs', md: 'md', lg: 'lg' }}
             lineHeight="1.4"
-            mb="6"
+            mb="8"
             fontFamily="'Montserrat', sans-serif"
             letterSpacing="-0.01em"
           >
@@ -110,6 +110,17 @@ function App() {
           wrap="wrap"
           direction={{ base: 'column', md: 'row' }}
         >
+          <Link
+            href="https://t.me/snapfact_bot"
+            isExternal
+            target="_blank"
+            color="#495963"
+            fontFamily="'Montserrat', sans-serif"
+            letterSpacing="-0.01em"
+            _hover={{ textDecoration: 'underline' }}
+          >
+            🤖 Try Telegram bot
+          </Link>
           <Link
             href="https://www.linkedin.com/in/valeria-kruk"
             isExternal
